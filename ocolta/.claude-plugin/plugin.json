@@ -1,0 +1,24 @@
+{
+  "name": "ocolta",
+  "displayName": "Ocolta",
+  "version": "1.0.0",
+  "description": "Read categorical summaries from your recoverable Ocolta Deep Reviews and turn them into careful, non-accusatory follow-up steps for a human document reviewer.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@ocolta.com",
+    "url": "https://ocolta.com"
+  },
+  "homepage": "https://github.com/johnarndt/soxoa-claude-plugins/tree/main/ocolta",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "document review",
+    "document integrity",
+    "bank statement",
+    "paystub",
+    "income verification",
+    "property management",
+    "lending",
+    "mcp"
+  ]
+}

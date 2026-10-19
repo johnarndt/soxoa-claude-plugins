@@ -1,6 +1,6 @@
 # Soxoa product plugins for Claude
 
-Five Claude plugins, one folder each. Every plugin connects Claude to one product's remote MCP server and adds skills that teach Claude how to use it well.
+Six Claude plugins, one folder each. Every plugin connects Claude to one product's remote MCP server and adds skills that teach Claude how to use it well.
 
 | Plugin | Product | MCP server | Auth |
 | --- | --- | --- | --- |
@@ -9,6 +9,7 @@ Five Claude plugins, one folder each. Every plugin connects Claude to one produc
 | [`soxoa`](soxoa/) | Soxoa, automation planning | `https://soxoa.com/mcp` | None |
 | [`postedly`](postedly/) | Postedly, fax and physical mail | `https://postedly.com/mcp/send` | OAuth |
 | [`portravo`](portravo/) | Portravo, construction takeoffs | `https://portravo.com/mcp` | OAuth |
+| [`ocolta`](ocolta/) | Ocolta, document-review summaries | `https://app.ocolta.com/mcp` | OAuth |
 
 ## Install in Claude Code
 

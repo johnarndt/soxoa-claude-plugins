@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ocolta": {
+      "type": "http",
+      "url": "https://app.ocolta.com/mcp"
+    }
+  }
+}
