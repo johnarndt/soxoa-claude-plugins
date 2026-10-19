@@ -21,5 +21,8 @@
     "physical-mail",
     "mcp"
   ],
-  "privacyPolicyUrl": "https://postedly.com/privacy"
+  "privacyPolicyUrl": "https://postedly.com/privacy",
+  "documentationUrl": "https://postedly.com/developers",
+  "supportUrl": "https://postedly.com/support",
+  "termsOfServiceUrl": "https://postedly.com/terms"
 }

@@ -22,5 +22,8 @@
     "structured-data",
     "local-business"
   ],
-  "privacyPolicyUrl": "https://mentioned-on.com/privacy"
+  "privacyPolicyUrl": "https://mentioned-on.com/privacy",
+  "documentationUrl": "https://mentioned-on.com/developers/mcp",
+  "supportUrl": "https://mentioned-on.com/support",
+  "termsOfServiceUrl": "https://mentioned-on.com/terms"
 }

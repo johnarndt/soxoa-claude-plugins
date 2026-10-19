@@ -21,5 +21,8 @@
     "lending",
     "mcp"
   ],
-  "privacyPolicyUrl": "https://ocolta.com/legal/privacy"
+  "privacyPolicyUrl": "https://ocolta.com/legal/privacy",
+  "documentationUrl": "https://github.com/johnarndt/soxoa-claude-plugins/tree/main/ocolta",
+  "supportUrl": "https://ocolta.com/contact",
+  "termsOfServiceUrl": "https://ocolta.com/legal/terms"
 }

@@ -21,5 +21,8 @@
     "business-case",
     "planning"
   ],
-  "privacyPolicyUrl": "https://soxoa.com/privacy"
+  "privacyPolicyUrl": "https://soxoa.com/privacy",
+  "documentationUrl": "https://soxoa.com/mcp-guide",
+  "supportUrl": "https://soxoa.com/support",
+  "termsOfServiceUrl": "https://soxoa.com/terms"
 }

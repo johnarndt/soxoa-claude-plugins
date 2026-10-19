@@ -21,5 +21,8 @@
     "xlsx",
     "mcp"
   ],
-  "privacyPolicyUrl": "https://portravo.com/privacy"
+  "privacyPolicyUrl": "https://portravo.com/privacy",
+  "documentationUrl": "https://portravo.com/developers/mcp",
+  "supportUrl": "https://portravo.com/support",
+  "termsOfServiceUrl": "https://portravo.com/terms"
 }

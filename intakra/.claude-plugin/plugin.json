@@ -20,5 +20,8 @@
     "why-now",
     "evidence-review"
   ],
-  "privacyPolicyUrl": "https://intakra.com/privacy"
+  "privacyPolicyUrl": "https://intakra.com/privacy",
+  "documentationUrl": "https://intakra.com/mcp-guide",
+  "supportUrl": "https://intakra.com/support",
+  "termsOfServiceUrl": "https://intakra.com/terms"
 }
