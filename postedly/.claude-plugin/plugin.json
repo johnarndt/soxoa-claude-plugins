@@ -11,5 +11,15 @@
   "homepage": "https://postedly.com/developers",
   "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
   "license": "MIT",
-  "keywords": ["fax", "mail", "letter", "certified-mail", "postcard", "handwritten-card", "physical-mail", "mcp"]
+  "keywords": [
+    "fax",
+    "mail",
+    "letter",
+    "certified-mail",
+    "postcard",
+    "handwritten-card",
+    "physical-mail",
+    "mcp"
+  ],
+  "privacyPolicyUrl": "https://postedly.com/privacy"
 }
