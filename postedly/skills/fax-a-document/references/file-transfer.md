@@ -43,7 +43,9 @@ Use when the file is large, or when you cannot read the bytes yourself.
 
 It returns a private, single-use request that expires in 15 minutes, with a request ID, an `uploadEndpoint` for a direct multipart POST (form field `file`, no extra token needed), and a browser `uploadUrl`.
 
-- If you can run commands (Claude Code), POST the real file to the exact `uploadEndpoint`, for example `curl -sS -F "file=@final-letter.pdf" "<uploadEndpoint>"`. The endpoint is on postedly.com. Do not print the endpoint in public logs.
+- If you can run commands (Claude Code), first ask the user to confirm the exact file path to send, then POST only that file to the exact `uploadEndpoint`, for example `curl -sS -F "file=@final-letter.pdf" "<uploadEndpoint>"`.
+- Only upload when `uploadEndpoint` starts with `https://postedly.com/api/document-handoffs/`. If it points anywhere else, do not upload; tell the user and stop.
+- Never upload any other file, a whole folder, or anything the user did not choose to send. Do not print the endpoint in public logs.
 - If you cannot access the file, give the user the browser `uploadUrl` and ask them to upload the final PDF there.
 - Then call `postedly_document_status` with `{"documentRequestId": "<request ID>"}`. States: awaiting upload, uploading, complete, expired. A complete request includes the document ID, SHA-256, page count, byte count and preview URL.
 - After a timeout, check status before creating another handoff. If it expired, prepare a new one.

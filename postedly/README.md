@@ -12,6 +12,7 @@ Postedly sends real faxes, letters, certified mail, postcards and handwritten ca
 | Auth | OAuth 2.0 with dynamic client registration. Scopes: `orders:read`, `quotes:write`, `checkout:write`. You sign in and consent on Postedly's own page; the plugin contains no keys or credentials |
 | Data sent to postedly.com | The bytes of each document you choose to send (PDF), recipient details (name, postal address or fax number), sender details (name, return or billing address; your account's verified email is filled in by Postedly), handwritten card choices and message text, and the IDs needed to read quotes and orders |
 | Payment | Only on Postedly's hosted Stripe Checkout page, after you approve on Postedly's review page. Card details and email verification codes never go through Claude or this chat |
+| Claude Code uploads | When Claude can read the file on your machine, the skills ask you to confirm the file, then send only that PDF to a single-use upload address on `https://postedly.com/api/document-handoffs/` (for example with `curl`). Claude refuses any upload address outside postedly.com |
 | Anything else | Nothing. The plugin itself contacts no other service. Postedly passes what is needed to its fax, print-and-mail and handwriting providers to fulfill an order you approve, as described in its privacy policy |
 
 ## Tools
