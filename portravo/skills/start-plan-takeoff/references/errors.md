@@ -22,9 +22,12 @@ These are the codes Portravo's connection can return today. If you see a code th
 | `invalid_metro` | `metro_code` is not a supported market. | Call `list_pricing_markets`, show the options, and ask. Or create the project without `metro_code` if the user agrees. |
 | `invalid_offset` | `list_projects.offset` out of range. | Use `0` or the `nextOffset` value returned by the previous page. |
 | `idempotency_conflict` | The same `idempotency_key` was sent before with different arguments. | If this is a retry, resend the original arguments. If it is a new request, make a new key. |
+| `plan_required` | `run_takeoff` was called before the project has a plan PDF. Nothing was charged and the `idempotency_key` was not used up. | Give the user the `uploadUrl` from the error, wait for them to upload the plan, confirm it with `get_takeoff`, then call `run_takeoff` again with the same `idempotency_key`. |
 | `not_found` | No project with that id in this account. | Call `list_projects` and let the user pick. Do not suggest the project belongs to someone else. |
 
 ## Plan file problems (`attach_plan_pdf`)
+
+When a plan cannot be attached from chat, the error also carries the project page link (`uploadUrl` and `reviewUrl`, for example `https://portravo.com/projects/<id>`). Give the user that link, ask them to upload the PDF there, then call `get_takeoff` to confirm the file before `run_takeoff`.
 
 | Code | Meaning | What to do |
 | --- | --- | --- |
