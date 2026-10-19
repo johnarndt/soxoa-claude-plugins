@@ -1,0 +1,24 @@
+{
+  "name": "soxoa",
+  "displayName": "Soxoa Automation Planning",
+  "version": "1.0.0",
+  "description": "Estimate illustrative automation ROI and rank recurring workflows into automate, assist, or discovery using Soxoa's public, read-only planning tools.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@soxoa.com",
+    "url": "https://soxoa.com"
+  },
+  "homepage": "https://soxoa.com/mcp-guide",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "automation",
+    "roi",
+    "workflow",
+    "process-discovery",
+    "operations",
+    "small-business",
+    "business-case",
+    "planning"
+  ]
+}

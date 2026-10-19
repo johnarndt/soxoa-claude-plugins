@@ -1,0 +1,25 @@
+{
+  "name": "mentionedon",
+  "displayName": "MentionedOn",
+  "version": "1.0.0",
+  "description": "Grade your AI discovery signals, get a ranked fix list, and turn dated ChatGPT, Claude, Gemini, or Perplexity answers you captured into mention and citation rates.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@mentioned-on.com",
+    "url": "https://mentioned-on.com"
+  },
+  "homepage": "https://mentioned-on.com/developers/mcp",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "ai-visibility",
+    "generative-engine-optimization",
+    "geo",
+    "local-seo",
+    "ai-search",
+    "llm-mentions",
+    "citations",
+    "structured-data",
+    "local-business"
+  ]
+}

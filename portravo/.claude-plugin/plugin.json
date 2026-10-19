@@ -1,0 +1,24 @@
+{
+  "name": "portravo",
+  "displayName": "Portravo",
+  "version": "1.0.0",
+  "description": "Turn construction plan PDFs into Portravo takeoffs, check what still needs estimator review, and download reviewed, priced estimates as Excel workbooks.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@portravo.com",
+    "url": "https://portravo.com"
+  },
+  "homepage": "https://portravo.com/developers/mcp",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "construction",
+    "takeoff",
+    "material takeoff",
+    "estimating",
+    "plan pdf",
+    "contractor",
+    "xlsx",
+    "mcp"
+  ]
+}

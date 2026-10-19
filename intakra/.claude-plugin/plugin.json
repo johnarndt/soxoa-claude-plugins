@@ -1,0 +1,23 @@
+{
+  "name": "intakra",
+  "displayName": "Intakra",
+  "version": "1.0.0",
+  "description": "Score account fit and dated buying-signal evidence you supply, then prepare a review-only why-now brief that keeps every fact labeled unverified.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@intakra.com",
+    "url": "https://intakra.com"
+  },
+  "homepage": "https://intakra.com/mcp-guide",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "buying-signals",
+    "account-prioritization",
+    "sales",
+    "b2b",
+    "ideal-customer-profile",
+    "why-now",
+    "evidence-review"
+  ]
+}

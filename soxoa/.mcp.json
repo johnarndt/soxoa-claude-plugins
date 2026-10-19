@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "soxoa": {
+      "type": "http",
+      "url": "https://soxoa.com/mcp"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "soxoa-plugins",
+  "owner": {
+    "name": "Soxoa LLC",
+    "email": "hello@soxoa.com",
+    "url": "https://soxoa.com"
+  },
+  "metadata": {
+    "description": "Claude plugins for MentionedOn, Intakra, Soxoa, Postedly and Portravo. Each plugin pairs the product's remote MCP server with skills that teach Claude how to use it."
+  },
+  "plugins": [
+    { "name": "mentionedon", "source": "./mentionedon", "description": "Grade AI-discovery evidence you supply and turn it into a prioritized visibility plan.", "category": "marketing" },
+    { "name": "intakra", "source": "./intakra", "description": "Score caller-supplied buying-signal evidence and prepare why-now reviews for a human.", "category": "sales" },
+    { "name": "soxoa", "source": "./soxoa", "description": "Estimate illustrative automation ROI and rank workflows for automate, assist, or discovery.", "category": "productivity" },
+    { "name": "postedly", "source": "./postedly", "description": "Send real faxes, letters, certified mail, postcards and handwritten cards, with browser approval before payment.", "category": "productivity" },
+    { "name": "portravo", "source": "./portravo", "description": "Turn construction plan PDFs into reviewed takeoffs and Excel estimates in your Portravo account.", "category": "productivity" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "postedly",
+  "displayName": "Postedly",
+  "version": "1.0.0",
+  "description": "Send real faxes, letters, certified mail, postcards and handwritten cards in the US from Claude, priced per send, with your approval on a Postedly review page before payment.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "john@soxoa.com",
+    "url": "https://postedly.com"
+  },
+  "homepage": "https://postedly.com/developers",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": ["fax", "mail", "letter", "certified-mail", "postcard", "handwritten-card", "physical-mail", "mcp"]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "intakra": {
+      "type": "http",
+      "url": "https://intakra.com/mcp"
+    }
+  }
+}
