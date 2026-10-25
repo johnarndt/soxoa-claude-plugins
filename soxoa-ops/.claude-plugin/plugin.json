@@ -1,0 +1,32 @@
+{
+  "name": "soxoa-ops",
+  "displayName": "Soxoa Ops",
+  "version": "0.1.0",
+  "description": "Operating skills for owners running a business with AI: a verbatim feedback inbox, signup alerts, a daily brief, owner action lists, claim and positioning audits, ad and funnel checks, prospect research, marketing kits, voice guides, evidence-based articles, AI output review and automation scoping.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@soxoa.com",
+    "url": "https://soxoa.com"
+  },
+  "homepage": "https://github.com/johnarndt/soxoa-claude-plugins/tree/main/soxoa-ops",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "operations",
+    "customer-feedback",
+    "onboarding",
+    "reporting",
+    "human-in-the-loop",
+    "positioning",
+    "marketing",
+    "sales-research",
+    "writing",
+    "ai-evaluation",
+    "automation",
+    "small-business"
+  ],
+  "privacyPolicyUrl": "https://soxoa.com/privacy",
+  "documentationUrl": "https://github.com/johnarndt/soxoa-claude-plugins/tree/main/soxoa-ops",
+  "supportUrl": "https://soxoa.com/support",
+  "termsOfServiceUrl": "https://soxoa.com/terms"
+}
