@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "regsentry": {
+      "type": "http",
+      "url": "https://regsentry.com/mcp"
+    }
+  }
+}

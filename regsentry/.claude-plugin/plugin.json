@@ -1,0 +1,19 @@
+{
+  "name": "regsentry",
+  "displayName": "RegSentry Tracking and Consent Review",
+  "version": "1.0.0",
+  "description": "Inspect an authorized public site's tracking signals, review consent observations, and prepare technical remediation guidance.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@soxoa.com",
+    "url": "https://regsentry.com"
+  },
+  "homepage": "https://regsentry.com/agents",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": ["privacy", "consent", "tracking", "evidence", "remediation"],
+  "privacyPolicyUrl": "https://regsentry.com/privacy",
+  "documentationUrl": "https://regsentry.com/agents",
+  "supportUrl": "https://regsentry.com/support",
+  "termsOfServiceUrl": "https://regsentry.com/terms"
+}

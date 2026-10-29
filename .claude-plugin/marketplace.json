@@ -6,7 +6,7 @@
     "url": "https://soxoa.com"
   },
   "metadata": {
-    "description": "Claude plugins for MentionedOn, Intakra, Soxoa, Postedly, Portravo and Ocolta, each pairing the product's remote MCP server with skills, plus Soxoa Ops: skills-only operating routines."
+    "description": "Claude plugins for MentionedOn, Intakra, Soxoa, Postedly, Portravo, Ocolta and RegSentry, each pairing the product's remote MCP server with skills, plus Soxoa Ops: skills-only operating routines."
   },
   "plugins": [
     { "name": "mentionedon", "source": "./mentionedon", "description": "Grade AI-discovery evidence you supply and turn it into a prioritized visibility plan.", "category": "marketing" },
@@ -15,6 +15,7 @@
     { "name": "postedly", "source": "./postedly", "description": "Send real faxes, letters, certified mail, postcards and handwritten cards, with browser approval before payment.", "category": "productivity" },
     { "name": "portravo", "source": "./portravo", "description": "Turn construction plan PDFs into reviewed takeoffs and Excel estimates in your Portravo account.", "category": "productivity" },
     { "name": "ocolta", "source": "./ocolta", "description": "Read categorical summaries from your recoverable Ocolta Deep Reviews and plan fair document-verification follow-up.", "category": "productivity" },
+    { "name": "regsentry", "source": "./regsentry", "description": "Review authorized public website tracking and consent evidence with technical remediation guidance.", "category": "security" },
     { "name": "soxoa-ops", "source": "./soxoa-ops", "description": "Fifteen operating skills: feedback inbox, signup alerts, daily brief, owner actions, claim audit, ad path check, prospect research, marketing kit, voice guide, evidence articles, AI output review and automation scoping.", "category": "productivity" }
   ]
 }
