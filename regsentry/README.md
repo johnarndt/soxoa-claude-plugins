@@ -2,11 +2,11 @@
 
 # RegSentry Tracking and Consent Review
 
-Inspect a public website you own or are authorized to test, review supplied consent evidence, compare dated observations, and prepare a technical remediation report. The plugin connects to RegSentry's six public tools without an account or API key. It does not set up monitoring or change a website.
+Inspect a public website you own or are authorized to test, review supplied consent evidence, compare dated observations, and prepare a technical remediation report. The plugin connects to RegSentry's six public tools without an account or API key. It does not set up monitoring or directly edit a website.
 
 ## Connection and data
 
-The plugin uses streamable HTTP at `https://regsentry.com/mcp`. Claude sends the domain and tool arguments you provide to RegSentry. Static and runtime inspection contact the specified public site; that site and its providers may receive ordinary request information. Supply only redacted evidence and avoid credentials and sensitive personal information. RegSentry's technical observations are not legal advice, certification or proof of liability. See [privacy](https://regsentry.com/privacy), [terms](https://regsentry.com/terms) and [support](https://regsentry.com/support).
+The plugin uses streamable HTTP at `https://regsentry.com/mcp`. Claude sends the domain and tool arguments you provide to RegSentry. Static and runtime inspection contact the specified public site; that site and its providers may receive ordinary request information. Page scripts and consent controls can make public GET requests that have remote effects. Supply only redacted evidence and avoid credentials and sensitive personal information. RegSentry's technical observations are not legal advice, certification or proof of liability. See [privacy](https://regsentry.com/privacy), [terms](https://regsentry.com/terms) and [support](https://regsentry.com/support).
 
 ## Public tools
 
