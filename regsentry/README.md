@@ -2,11 +2,15 @@
 
 # RegSentry Tracking and Consent Review
 
-Inspect a public website you own or are authorized to test, review supplied consent evidence, compare dated observations, and prepare a technical remediation report. The plugin connects to RegSentry's six public tools without an account or API key. It does not set up monitoring or directly edit a website.
+Inspect a public website you own or are expressly authorized to test, review supplied consent evidence, compare dated observations of the same domain, and prepare a technical remediation report. The plugin connects Claude to RegSentry's six public tools. It does not set up monitoring, store reports, or edit a website.
 
 ## Connection and data
 
-The plugin uses streamable HTTP at `https://regsentry.com/mcp`. Claude sends the domain and tool arguments you provide to RegSentry. Static and runtime inspection contact the specified public site; that site and its providers may receive ordinary request information. Page scripts and consent controls can make public GET requests that have remote effects. Supply only redacted evidence and avoid credentials and sensitive personal information. RegSentry's technical observations are not legal advice, certification or proof of liability. See [privacy](https://regsentry.com/privacy), [terms](https://regsentry.com/terms) and [support](https://regsentry.com/support).
+- **One remote MCP server:** `https://regsentry.com/mcp` (Streamable HTTP). The plugin contacts nothing else and contains no scripts, hooks or local servers.
+- **Authentication:** none. The six public tools need no account, API key or OAuth connection.
+- **Data sent to RegSentry:** the domain and tool arguments you provide, including any observations you paste. Supply only redacted evidence. Do not include credentials or sensitive personal information.
+- **Effects on the inspected site:** static and runtime inspection contact the specified public site, and that site and its providers may receive ordinary request information. In runtime sessions, page scripts and consent controls can make public GET requests that have remote effects.
+- **Nature of results:** RegSentry returns technical observations. They are not legal advice, a compliance certification or proof of liability.
 
 ## Public tools
 
@@ -19,24 +23,59 @@ The plugin uses streamable HTTP at `https://regsentry.com/mcp`. Claude sends the
 | `get_remediation_playbook` | Get tracker-specific guidance for review. |
 | `export_consent_report` | Format supplied observations as plain-text report content. |
 
-Runtime checks use fresh contexts, observe attempted requests rather than proven transmission, and may not exercise every consent flow. Missing controls, blocked redirects and incomplete phases stay unresolved. Inspecting one homepage is not proof of site-wide behavior.
+Runtime checks use fresh isolated browser contexts, observe attempted requests to known trackers rather than proven transmission, and press only supported exact English consent buttons, so they may not exercise every consent flow. Missing controls, blocked redirects and incomplete phases stay unresolved. Absence of a request in a bounded window is not proof of absence. Inspecting one homepage is not proof of site-wide behavior.
 
 ## Install in Claude Code
 
-Once this candidate is published to the marketplace, run:
+The RegSentry bundle is available from the `codex/regsentry-claude-plugin-20261029` branch of the Soxoa GitHub marketplace. In Claude Code v2.1.275 or later, install it in one step:
 
 ```
-/plugin marketplace add johnarndt/soxoa-claude-plugins
-/plugin install regsentry@soxoa-plugins
+/plugin install regsentry --marketplace johnarndt/soxoa-claude-plugins#codex/regsentry-claude-plugin-20261029
 ```
 
-For a connector alone, use `claude mcp add --transport http regsentry https://regsentry.com/mcp`. These instructions do not establish directory publication.
+Other options:
 
-## Example prompts
+- **Older Claude Code:** run `/plugin marketplace add johnarndt/soxoa-claude-plugins#codex/regsentry-claude-plugin-20261029`, then `/plugin install regsentry@soxoa-plugins`.
+- **Connector only:** run `claude mcp add --transport http regsentry https://regsentry.com/mcp` in Claude Code, or add `https://regsentry.com/mcp` under Customize > Connectors in Claude apps.
 
-- "Inspect the tracking signals on my public website example.com. I authorize the inspection."
-- "Compare these two dated consent observations and identify unresolved phases."
-- "Use these findings to prepare a prioritized remediation plan and retest steps."
+The GitHub marketplace install requires no RegSentry sign-in.
+
+## Reviewer prompts
+
+Each prompt below is safe to run against a site you own or are expressly authorized to test. Replace `YOUR-AUTHORIZED-DOMAIN` with that hostname only. The placeholder is not a real site, and nothing in this document reports a scan that has been run.
+
+### 1. Static check of an authorized fixture
+
+> Run a static tracking check on YOUR-AUTHORIZED-DOMAIN. I own this site. Do not run a browser session yet.
+
+If you are an authorized tester rather than the owner, say so instead: "I am expressly authorized to test it."
+
+**Expected outcome.** Claude calls `inspect_site_tracking` once with the bare hostname. The result lists tracker-related markup found on the HTTPS homepage, such as scripts, pixels and consent-management markers, and flags gaps that need runtime verification. Claude reports the observation date when present and leaves runtime consent behavior unresolved.
+
+**Unresolved caveats.** Static markup shows what is present, not what fires or when. Dynamically loaded tags, tag-manager containers and consent-gated scripts remain unresolved until a runtime check. One homepage is not the whole site. If the homepage redirects to another hostname, Claude reports that and asks for authorization before inspecting the final domain.
+
+### 2. Bounded browser check of the same fixture
+
+> Now run the bounded runtime consent check on YOUR-AUTHORIZED-DOMAIN, same authorization. Report attempted tracker requests before consent and after the reject and accept controls, and tell me which phases were incomplete.
+
+**Expected outcome.** Claude calls `inspect_runtime_consent` for the same hostname. The result reports, per phase where supported, attempted requests to known trackers observed in fresh isolated browser sessions: before consent, after reject and after accept. Claude presents each phase separately and preserves any incomplete or control-not-found state as unresolved rather than as a pass.
+
+**Unresolved caveats.** Attempted requests are not proven transmission. Only supported exact English consent buttons are pressed, so a custom, translated or multi-step banner may leave the reject or accept phase incomplete. Redirects are blocked, so a redirecting homepage yields an incomplete phase. Absence of a request in a bounded window is not proof of absence. Page scripts and consent controls can make public GET requests with remote effects on the site's providers.
+
+### 3. Comparison and report from supplied dated observations
+
+> Here are two dated, redacted consent observations for YOUR-AUTHORIZED-DOMAIN, one from the earlier date and one from the later date: [paste both]. Compare them, note unresolved phases, pull remediation guidance for any tracker still requesting before consent, and format a plain-text report.
+
+**Expected outcome.** Claude calls `compare_consent_observations` on the two supplied snapshots, then `get_remediation_playbook` for the trackers named in the comparison, then `export_consent_report`. No site contact occurs. These tools work only on what you supplied. The output preserves both observation dates, states what changed and what did not, lists which phases are unresolved in either snapshot, and presents remediation as technical guidance for review.
+
+**Unresolved caveats.** Comparison requires compatible snapshots of the same domain. If they differ in domain or format, Claude reports that rather than reconciling them. A missing earlier snapshot is requested, not invented. The report is formatted content, not a stored or certified document, and it does not conclude whether the site is compliant or liable.
+
+## Privacy, terms, support
+
+- Privacy: https://regsentry.com/privacy
+- Terms: https://regsentry.com/terms
+- Support: https://regsentry.com/support
+- Documentation: https://regsentry.com/agents
 
 ## License
 

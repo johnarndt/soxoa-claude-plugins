@@ -1,7 +1,7 @@
 {
   "name": "regsentry",
   "displayName": "RegSentry Tracking and Consent Review",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Inspect an authorized public site's tracking signals, review consent observations, and prepare technical remediation guidance.",
   "author": {
     "name": "Soxoa LLC",
