@@ -53,8 +53,8 @@ What each `status` means and the next step to offer:
 | status | Meaning | Next step to offer |
 | --- | --- | --- |
 | `draft` | Created; no takeoff has run yet. May or may not have a plan attached. | Attach a plan and run the takeoff (`start-plan-takeoff`). |
-| `extracting` | The AI takeoff is running. | Check back later. |
-| `failed` | The last takeoff run failed; its credit reservation was refunded. | Open the project in Portravo; a new run needs the user's yes. |
+| `extracting` | The AI takeoff is running. | Check progress with `get_takeoff_status` for that project if the user asks. |
+| `failed` | The last takeoff run failed; its credit reservation was refunded. | Open the project in Portravo. A new run needs a fresh preflight quote and the user's yes. |
 | `review` | Takeoff done; lines need estimator review, mapping and pricing. | Summarize what needs review (`review-takeoff`). |
 | `priced` | Estimate priced in Portravo. | Try the Excel export (`export-reviewed-estimate`). |
 | `final` | Estimate marked final. | Try the Excel export. |

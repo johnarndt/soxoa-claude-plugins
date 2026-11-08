@@ -1,7 +1,7 @@
 {
   "name": "portravo",
   "displayName": "Portravo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turn construction plan PDFs into Portravo takeoffs, check what still needs estimator review, and download reviewed, priced estimates as Excel workbooks.",
   "author": {
     "name": "Soxoa LLC",

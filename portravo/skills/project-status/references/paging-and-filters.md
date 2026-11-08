@@ -36,7 +36,7 @@ Rules:
 | "this week", "since Monday" | `updatedAt` on or after that date in the user's time zone |
 | a city or market | `metroCode` (match against `list_pricing_markets` names if needed) or `address` |
 
-An `extracting` project with an `updatedAt` many minutes old may have stalled. Say what the data shows ("still marked as running since 2:10 pm") and suggest opening it in Portravo; do not declare it failed.
+An `extracting` project with an `updatedAt` many minutes old may have stalled. Call `get_takeoff_status` for that project and say what it shows ("still marked as running since 2:10 pm"). Suggest opening it in Portravo, and do not declare it failed. `get_takeoff_status` never restarts a run.
 
 ## Account check
 

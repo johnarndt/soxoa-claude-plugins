@@ -29,19 +29,19 @@ If the user pastes takeoff lines or Portravo's scope notes, build the checklist 
 | Need | Tool argument | Rules |
 | --- | --- | --- |
 | Which project | `get_takeoff.project_id` | Required. 1 to 128 characters, letters, digits, `_` and `-` only. Resolve a name with `list_projects`. |
-| Scope notes (if available) | none | `scopeNotes` is returned only by `run_takeoff`. Use it if the run happened in this conversation, or if the user pastes it. Do not re-run a takeoff to get it. |
+| Scope notes (if available) | `get_takeoff_status.project_id` | Use the completion limitations `get_takeoff_status` reports, or notes the user pastes. Quote them as given. Never run a takeoff to get them. |
 | Trades the user bids (optional) | none | Ask "which trades are you pricing?" only if it changes the list. Use it to filter. |
 | Recipient (optional) | none | Architect, engineer, GC, or owner. Used only to phrase the RFIs. |
 
 ## Workflow
 
 1. Resolve the project id (`list_projects`, paging with `nextOffset`, if the user gave a name).
-2. Call `get_takeoff` with `{ "project_id": "<id>" }`. If `project.status` is `draft`, `extracting`, or `failed`, there is nothing to check yet; say so.
+2. Call `get_takeoff` with `{ "project_id": "<id>" }`. If `project.status` is `draft`, `extracting`, or `failed`, there is nothing to check yet; say so. Otherwise call `get_takeoff_status` with the same `project_id` for any completion limitations.
 3. Collect evidence, ignoring lines with `status: "rejected"`:
    - **Assumptions:** lines whose `notes` say a value was assumed, inferred, or not applied.
    - **Low confidence:** lines with `confidence` below 0.60 (or the user's cutoff).
    - **Unmapped:** lines with `assemblyId` null.
-   - **Scope notes:** sentences in `scopeNotes` (if available) about skipped sheets or scope left out because the plans did not show it.
+   - **Scope notes:** completion limitations (if reported) about skipped sheets or scope left out because the plans did not show it.
    - **Trades with no lines:** only for trades the user says they bid. "No electrical lines" is a question, not a finding of missing work.
    - **Coverage:** compare `files[].pageCount` with the `page` values that appear on lines; pages with no lines may be title, notes, or detail sheets, or may be unread.
 4. Turn each item into a checklist entry and, where a document answer is needed, a draft RFI. Use `references/rfi-patterns.md` for wording.
@@ -95,7 +95,7 @@ User: "Make me an RFI list for the Riverside workshop takeoff. I'm the GC."
    - drywall "Gypsum board, interior walls", 2032 sf, confidence 0.4, notes "254 lf x 8 ft, ceiling height assumed", `assemblyId` null
    - roofing "Asphalt shingles", 1450 sf, confidence 0.65, notes "plan area, pitch and overhang not applied"
    - lines on pages 1 to 3, none on page 4
-2. Earlier in the conversation `run_takeoff` returned `scopeNotes`: "Sheet A0 is a title block, skipped. No insulation or paint shown on wall types; not taken off."
+2. `get_takeoff_status` reports these completion limitations: "Sheet A0 is a title block, skipped. No insulation or paint shown on wall types; not taken off."
 3. Reply:
 
 ```

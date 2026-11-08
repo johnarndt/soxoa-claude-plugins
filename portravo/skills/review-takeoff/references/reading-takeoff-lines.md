@@ -55,5 +55,5 @@ Within a trade, list the largest items by `qty` with their unit. If a trade has 
 ## What the takeoff does not tell you
 
 - Prices, labor, or totals. Those are set in Portravo after review.
-- Whether scope was left out on purpose. The extractor only lists scope it found evidence for on the sheets; it does not add standard items the plans do not show. The `scopeNotes` from `run_takeoff` (if the run happened in this conversation) explain skipped sheets and omitted scope.
+- Whether scope was left out on purpose. The extractor only lists scope it found evidence for on the sheets; it does not add standard items the plans do not show. Completion limitations reported by `get_takeoff_status` explain what the run could not cover. Quote them as given.
 - Whether the estimate can be exported. Only `export_reviewed_estimate` answers that.

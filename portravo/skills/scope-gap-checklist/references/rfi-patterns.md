@@ -26,7 +26,7 @@ No RFI. This is estimator work in Portravo.
 
 ## From scope notes
 
-Scope notes come from `run_takeoff.scopeNotes`. Typical content and how to use it:
+Scope notes come from the completion limitations `get_takeoff_status` reports, or from notes the user pastes. Typical content and how to use it:
 
 | Scope note content | Checklist item | RFI question |
 | --- | --- | --- |

@@ -41,8 +41,8 @@ Optional focus the user may give: a trade ("just electrical"), a confidence cuto
 2. Call `get_takeoff` with `{ "project_id": "<id>" }`.
 3. Check `project.status` first:
    - `draft`: no takeoff yet. If `files` is empty, no plan is attached. Offer `start-plan-takeoff`.
-   - `extracting`: the takeoff is running. Say so and offer to check again later.
-   - `failed`: the last run failed and its credit was refunded. Point to `reviewUrl`; a new run needs the user's fresh yes.
+   - `extracting`: the takeoff is running. Call `get_takeoff_status` for its progress, report what it shows, and offer to check again later. Do not summarize lines until it is done.
+   - `failed`: the last run failed and its credit reservation was refunded. Point to `reviewUrl`. A new run needs a fresh `preflight_takeoff` quote and the user's fresh yes (`start-plan-takeoff`).
    - `review`, `priced`, `final`: summarize the lines.
 4. Group `lines` by `trade`, then summarize using `references/reading-takeoff-lines.md` for field meanings and the triage order.
 5. Present with the template below and end with `reviewUrl`.
