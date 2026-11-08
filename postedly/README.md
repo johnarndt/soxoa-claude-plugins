@@ -41,7 +41,7 @@ Postedly sends real faxes, letters, certified mail, postcards and handwritten ca
 
 ## Setup
 
-- **Claude directory:** install Postedly from the plugin directory, then sign in to Postedly when Claude asks.
+- **Claude directory:** once the listing is approved, install Postedly from the plugin directory, then sign in to Postedly when Claude asks.
 - **Claude Code marketplace:**
   ```
   /plugin marketplace add johnarndt/soxoa-claude-plugins
@@ -64,13 +64,33 @@ First sign-in verifies your email and asks you to approve the scopes above on po
 - "Send a handwritten thank-you card to my client Dana Kim. Show me the handwriting styles."
 - "Did the fax I sent this morning go through?"
 
+### Synthetic no-send test sequence
+
+Uses only the reviewer's existing Postedly sign-in (no new keys or credentials), synthetic content, and stops before approval. Nothing is charged or sent at any step.
+
+1. "Which Postedly services are available right now?"
+   Expected: `postedly_services` with `{}`; live availability and starting prices. Nothing is created.
+2. "Show me the handwritten card options."
+   Expected: `postedly_products`; cards, handwriting styles and character limits.
+3. "List my Postedly orders."
+   Expected: `postedly_orders`; up to 50 orders, or none. Read-only.
+4. "Make a one-page letter that says 'Postedly synthetic test. Do not mail.' Quote it by regular mail to <the synthetic reviewer recipient>, using the synthetic reviewer return address. Stop at the review link."
+   Use only test addresses supplied with the reviewer fixture. If none were supplied, stop at the catalog. Expected: Claude shows the PDF and asks you to confirm it, then transfers it with `postedly_upload_document` (or a `postedly_prepare_document` link checked with `postedly_document_status`), and calls `postedly_quote` and `postedly_checkout`. It reports the exact quoted total, expiry and final proof page count, gives the private review link, and says nothing has been sent. Do not approve or pay on that page; the quote expires on its own.
+5. "Approve it and pay for me."
+   Expected: Claude declines. Approval happens only on Postedly's review page and payment only on hosted Stripe Checkout, by you. No order is created.
+6. "Did it mail?"
+   Expected: `postedly_orders`; no order exists for the test letter, because the review link creates none. Claude does not say "sent".
+
+For the same check with a synthetic fax, set `service: fax` on upload and use the reviewer fixture’s synthetic billing state and ZIP on the quote. The final proof may include a cover page. Verify the review link returns `requiresBrowserApproval` and the order count is unchanged.
+
 ## Limits and boundaries
 
 - US only: fax to supported US +1 numbers; mail to addresses in the 50 states and DC.
 - One document or card, one recipient, one approval per order. No bulk or mail-merge sends.
 - Letters and certified mail: portrait US Letter PDF, up to six physical sheets including the added address page. Fax: up to five pages plus a cover. Postcards: a two-page landscape PDF matching the live template. All PDFs at most 10 MiB, unencrypted.
 - Certified mail is USPS Certified Mail with tracking. A return receipt or signature is not included unless the quote says so. The plugin does not give legal advice about whether a mailing meets a notice requirement.
-- Claude cannot approve or pay for you. Quotes and review links never charge or send anything.
+- Claude cannot approve, pay or send for you. Quotes and review links never charge or send anything. Each quote is for an exact total and a private final proof that you check on Postedly's review page; approval happens only there, and payment only on hosted Stripe Checkout.
+- No tool writes, prints or mails checks, or pays anyone on your behalf.
 - Delivery dates are estimates. A delivered fax means the receiving machine accepted it, not that someone read it.
 - "Make & send an object" (3D printed objects) is a manually quoted beta and is not ordered through these tools; Claude will point you to the request form on postedly.com, and you send that request from your own email app.
 - Claude does not write or edit documents on Postedly's side. Any letter or postcard Claude writes for you is finished and shown to you before it is uploaded.

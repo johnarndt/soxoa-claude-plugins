@@ -4,8 +4,8 @@ Seven Claude plugins, one folder each. Six connect Claude to one product's remot
 
 | Plugin | Product | MCP server | Auth |
 | --- | --- | --- | --- |
-| [`mentionedon`](mentionedon/) | MentionedOn, AI-discovery evidence | `https://mentioned-on.com/mcp` | None |
-| [`intakra`](intakra/) | Intakra, buying-signal review | `https://intakra.com/mcp` | None |
+| [`mentionedon`](mentionedon/) | MentionedOn, AI-discovery evidence | `https://mentioned-on.com/mcp` | None for public tools; OAuth for account tools |
+| [`intakra`](intakra/) | Intakra, buying-signal review | `https://intakra.com/mcp` | None for public tools; OAuth for account tools |
 | [`soxoa`](soxoa/) | Soxoa, automation planning | `https://soxoa.com/mcp` | None |
 | [`postedly`](postedly/) | Postedly, fax and physical mail | `https://postedly.com/mcp/send` | OAuth |
 | [`portravo`](portravo/) | Portravo, construction takeoffs | `https://portravo.com/mcp` | OAuth |

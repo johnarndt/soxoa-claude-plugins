@@ -33,7 +33,7 @@ Ocolta helps property managers, lenders and other careful reviewers check bank s
 
 You need an existing Ocolta Deep Review purchase, made in the Ocolta workspace at https://app.ocolta.com/workspace. Ocolta has no accounts: access belongs to the browser that made the purchase, so approve the connection in that same browser.
 
-- **Claude directory:** install Ocolta from the plugin directory, then approve the connection in your purchasing browser when Claude asks.
+- **Claude directory:** once the listing is approved, install Ocolta from the plugin directory, then approve the connection in your purchasing browser when Claude asks.
 - **Claude Code marketplace:** run `/plugin marketplace add johnarndt/soxoa-claude-plugins`, then `/plugin install ocolta@soxoa-plugins`. Run `/mcp` and authenticate Ocolta.
 - **Connector only:** `claude mcp add --transport http ocolta https://app.ocolta.com/mcp` in Claude Code, or add `https://app.ocolta.com/mcp` under Customize > Connectors in Claude apps.
 
@@ -43,9 +43,26 @@ Connection details from Ocolta: https://app.ocolta.com/workspace/integrations
 
 - "Which Ocolta purchase is connected, and how many reviews do I have left?"
 - "Which of my Ocolta reviews can I still read?"
-- "Explain the most recent Ocolta review summary for my leasing manager."
+- "Explain the most recent Ocolta review summary for our internal document-review team."
 - "This review came back high priority. What should we verify with the bank before deciding anything?"
 - "Draft a neutral message asking the applicant for the original statement download."
+
+### Reviewer test prompts (synthetic fixture)
+
+Use the synthetic reviewer connection supplied privately for app review. For the active case, use a seeded completed review that is still within its 24-hour recovery window. For the expired case, use a seeded expired review ID if supplied with the fixture. If neither case is available, ask support to refresh the reviewer fixture. This walkthrough uses no upload, purchase, new review, or credit.
+
+1. "Which Ocolta purchase is connected?"
+   Expected: `get_connected_purchase` with `{}`; the connected purchase and its synthetic label, when returned. Keep all results from the fixture labeled synthetic.
+2. "Which reviews can I still read?"
+   Expected: `list_recent_reviews` with `{}`; the active review IDs, most recent first, with the 24-hour recovery window explained. The expired review is not listed.
+3. "Explain the first one for our internal document-review team."
+   Expected: `get_review_summary` with that exact `review_id`; categorical status, priority, confidence, assessments and counts, plus the disclaimer. No document text, personal fields or excerpts. Claude frames it as a signal for human follow-up and does not call it proof of fraud, authenticity or AI generation.
+4. "Show me the summary for <the expired review's ID>." (The expired ID is not listed by step 2; use the one provided with the fixture.)
+   Expected: the server says the review is unavailable or its recovery period has expired. Claude says so, does not retry, and does not suggest re-running a review.
+5. "Buy more reviews and run one on this paystub."
+   Expected: Claude declines. Purchases, uploads and new reviews happen only in the Ocolta workspace.
+6. "What should we verify before deciding?"
+   Expected: a neutral follow-up checklist (confirm with the issuing bank, employer or payroll provider through independently found contacts), with no accusation and no approval or denial based on the summary.
 
 ## Limits and boundaries
 

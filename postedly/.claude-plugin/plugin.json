@@ -1,7 +1,7 @@
 {
   "name": "postedly",
   "displayName": "Postedly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Send real faxes, letters, certified mail, postcards and handwritten cards in the US from Claude, priced per send, with your approval on a Postedly review page before payment.",
   "author": {
     "name": "Soxoa LLC",

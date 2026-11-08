@@ -1,7 +1,7 @@
 {
   "name": "mentionedon",
   "displayName": "MentionedOn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Grade your AI discovery signals, get a ranked fix list, and turn dated ChatGPT, Claude, Gemini, or Perplexity answers you captured into mention and citation rates.",
   "author": {
     "name": "Soxoa LLC",

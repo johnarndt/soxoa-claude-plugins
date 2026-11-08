@@ -1,13 +1,13 @@
 ---
 name: pilot-scoping-checklist
-description: "Use when a user has picked (or is about to pick) the first workflow to automate and wants to plan a small, safe pilot. Triggers include 'scope a pilot for this', 'what do we need before we build it', 'plan our first automation', 'how do we test this without breaking things', 'what should we measure', 'checklist before automating invoices', or a follow-up after a triage or ROI result such as 'ok, how do we start'. Produces a vendor-neutral pilot checklist with baseline, scope, human checkpoints, success criteria, and rollback, using the Soxoa planning tools only to confirm the workflow's posture and baseline value."
+description: "Use when a user has picked (or is about to pick) the first workflow to automate and wants to plan a small, safe pilot. Triggers include 'scope a pilot for this', 'what do we need before we build it', 'plan our first automation', 'how do we test this without breaking things', 'what should we measure', 'checklist before automating invoices', or a follow-up after a triage or ROI result such as 'ok, how do we start'. Produces a vendor-neutral pilot checklist with baseline, scope, human checkpoints, success criteria, and rollback, using the Soxoa planning tools only to confirm the workflow's posture and baseline value and, optionally, to draft a reviewable plan with build_workflow_pilot."
 ---
 
 # Pilot scoping checklist
 
 Turn one chosen workflow into a concrete, reversible pilot plan the user can hand to whoever will build it, in house or outside. The plan covers what to measure first, what is in and out of scope, where a person stays in the loop, what success looks like, and how to undo it.
 
-The Soxoa tools are optional here. Use them only to confirm the workflow's posture (`automate`, `assist`, `discovery`, and whether human review is required) and an illustrative baseline value, and only with the user's go-ahead.
+The Soxoa tools are optional here. Use them only to confirm the workflow's posture (`automate`, `assist`, `discovery`, and whether human review is required), an illustrative baseline value, and a draft plan from `build_workflow_pilot`, and only with the user's go-ahead.
 
 ## When not to use this skill
 
@@ -28,19 +28,22 @@ From the user (ask for anything missing, never invent):
 
 If the workflow has not been through the tools yet and the user wants it checked, collect the seven triage fields for it (`name`, `weeklyHours` 0.25 to 500, `predictability`, `judgmentRequired`, `errorCost`, `dataSensitivity` each `low`/`medium`/`high`, `systemsCount` 1 to 20) and, for a baseline value, `people` (1 to 500), `weeklyHoursPerPerson` (0.5 to 60), `loadedHourlyCost` (10 to 500), plus only the optional `automatableShare`, `workingWeeks`, `implementationCost` the user supplies.
 
+For a draft plan from `build_workflow_pilot`, collect all eleven required fields: `workflowName` (max 120), `trigger` (max 240), `inputDescription` and `desiredOutput` (max 600 each), `sourceSystem` and `destinationSystem` (max 80 each), `currentSteps` (1 to 8, max 240 each), `reviewOwner` (max 120), `riskLevel` (`low`/`medium`/`high`), `sensitiveData` (true/false), `successChecks` (1 to 6, max 240 each). Optional: `systemsAlreadyUsed` (up to 20) and `constraints` (up to 6). No other fields are accepted. Use role names rather than personal names where possible, and never put customer data, account numbers, or secrets in any field.
+
 ## Workflow
 
 1. **Reuse earlier results.** If triage or ROI already ran in this conversation, use those outputs. Do not call the tools again with the same inputs (results are deterministic and would be identical).
 2. **Optional posture check.** With the user's okay, call `prioritize_automation_workflows` with a one-item `workflows` array. Read `rankedWorkflows[0].recommendation`, `humanReviewRequired`, `rationale`, and the `guardrails` list.
 3. **Optional baseline value.** With the user's okay, call `estimate_automation_roi` with their required inputs, omitting optional ones they did not give (server defaults: 60% share, 48 weeks; no cost means `estimatedPaybackMonths: null`).
-4. **Errors.** MCP error -32602 means an out-of-range value or invalid enum; name the field, ask for a fix, call again. Network error: retry once (idempotent), then continue without the tool and say so.
-5. **Build the checklist** from `references/checklist.md`, filling each item from the user's facts and tool outputs. Leave unknowns as open questions with an owner, not guesses.
-6. **Set the pilot shape** from the posture:
+4. **Optional draft plan.** With the user's okay, and only when the posture is `automate` or `assist`, call `build_workflow_pilot` with the confirmed fields. Use its proposed steps, review gates, acceptance checks, and rollout to fill the checklist, and offer its Markdown plan. Keep the plan vendor-neutral: describe any tools it names by category unless the user already uses them (listed in `systemsAlreadyUsed`). Its drafting prompt is a suggestion for the builder to review; do not run it. If `humanReviewRequired` was true or the user's constraints demand approval, keep those checkpoints even if the tool's gates are lighter. For a test run, use `references/build-workflow-pilot-fixture.md`.
+5. **Errors.** MCP error -32602 means an out-of-range value, invalid enum, missing required field, or extra field; name the field, ask for a fix, call again. Network error: retry once (idempotent), then continue without the tool and say so.
+6. **Build the checklist** from `references/checklist.md`, filling each item from the user's facts and tool outputs. Leave unknowns as open questions with an owner, not guesses.
+7. **Set the pilot shape** from the posture:
    - `automate`: run in shadow mode first (automation runs alongside the person, outputs compared), then live with spot checks.
    - `assist`: automation prepares or drafts, a named person approves every item during the pilot.
    - `discovery`: no build. Collect real examples, map exceptions and decision rules, measure baseline, then re-triage.
    - If `humanReviewRequired` is `true`, the person-in-the-loop step stays in the plan for the whole pilot and after it, whatever the shape.
-7. **Present** with the template below and ask the user what to adjust.
+8. **Present** with the template below and ask the user what to adjust.
 
 ## Answer template
 
@@ -58,6 +61,7 @@ Posture from tool: <recommendation>, human review <required/not required>   (or:
 Open questions: <list with owner>
 Guardrails: <tool guardrails if triage ran>
 Illustrative baseline value: <ROI outputs if run, labelled illustrative>
+Draft plan from tool: <offer the Markdown plan if build_workflow_pilot ran, or "not drafted with the tool">
 ```
 
 ## Guardrails
@@ -67,10 +71,11 @@ Illustrative baseline value: <ROI outputs if run, labelled illustrative>
 - Never plan full automation of regulated, safety-critical, financial, medical, or legal judgment.
 - A pilot must be reversible: the manual process stays documented and available until the user decides otherwise.
 - All value figures are illustrative estimates, not guaranteed savings or professional advice, and the tools did not inspect the user's systems.
+- `build_workflow_pilot` connects no accounts, starts no provider work, stores nothing, sends nothing, and does not run the workflow. Never say the pilot was set up or started.
 
 ## If the Soxoa tools are not connected
 
-The checklist does not depend on the tools. Note that the posture check and baseline value were not run, and tell the user how to connect if they want them:
+The checklist does not depend on the tools. Note that the posture check, baseline value, and draft plan were not run, and tell the user how to connect if they want them:
 
 - Claude apps: Customize > Connectors, add a custom connector with URL `https://soxoa.com/mcp`, no authentication.
 - Claude Code: `claude mcp add --transport http soxoa https://soxoa.com/mcp`

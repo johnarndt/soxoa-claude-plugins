@@ -7,14 +7,17 @@ Intakra helps B2B sellers decide which accounts have a real, dated reason to loo
 ## What it connects to
 
 - **One remote MCP server:** `https://intakra.com/mcp` (Streamable HTTP).
-- **Authentication:** none. No Intakra account, login, or API key is used.
-- **What is sent:** only the tool arguments Claude builds from what you provide in the conversation: the account's business name, your offer and ideal-customer profile, fit criteria with your assessments and evidence, buying-signal events with optional dates and source links, and an optional review date.
+- **Authentication:** none for the two public tools below, which the core skills use. No Intakra account, login, or API key is needed for them.
+- **Account tools on the same endpoint:** the server also advertises account features for Intakra customers (for example `list_accounts`, `prioritize_accounts`, `get_account_changes`, `get_daily_brief`, and write tools such as `add_accounts`, `set_offering`, and `request_accounts`). They work only after you separately sign in to your own Intakra workspace with OAuth, and only on that workspace. Installing this plugin does not sign you in or grant that access. The skills in this bundle use only the public review tools.
+- **What is sent to the public tools:** only the tool arguments Claude builds from what you provide in the conversation: the account's business name, your offer and ideal-customer profile, fit criteria with your assessments and evidence, buying-signal events with optional dates and source links, and an optional review date.
 - **What the server does with it:** scores it deterministically and returns the result. Intakra's public tools do not open the links you supply, call other services, read any Intakra workspace, CRM, or contact data, or persist your input.
 - **Nothing else is contacted.** The plugin contains no scripts, hooks, or local servers and sends data nowhere other than the URL above.
 
 Do not paste personal, confidential, or login data. Use business facts only.
 
 ## Tools
+
+Public tools used by the core skills (no sign-in):
 
 | Tool | What it does | Access |
 |---|---|---|
@@ -33,7 +36,7 @@ Do not paste personal, confidential, or login data. Use business facts only.
 
 ## Setup
 
-- **Claude directory:** install Intakra from the plugin directory. No sign-in is needed.
+- **Claude directory:** once the listing is approved, install Intakra from the plugin directory. No sign-in is needed for the public tools.
 - **Claude Code marketplace:** run `/plugin marketplace add johnarndt/soxoa-claude-plugins`, then `/plugin install intakra@soxoa-plugins`.
 - **MCP only (Claude Code):** `claude mcp add --transport http intakra https://intakra.com/mcp`
 - **MCP only (Claude apps):** Customize > Connectors, add a custom connector with the URL `https://intakra.com/mcp`.
@@ -46,6 +49,17 @@ Do not paste personal, confidential, or login data. Use business facts only.
 - "Rank these six accounts with Intakra and tell me which to review first."
 - "Help me define fit criteria for our ideal customer before I score anything."
 
+### Test prompts with expected outcomes (no sign-in, synthetic data)
+
+1. "Score Example Freight Co for Intakra. Offer: route-planning software for regional carriers. ICP: US carriers with 50 to 500 trucks. Fit: 'Fleet size 50 to 500' is a match, evidence 'About 120 trucks per the company site.' Signal: hiring, 'Posted a dispatch operations manager role', observed 2026-10-20, relevance 'May indicate dispatch process changes', confidence medium. As of 2026-11-01."
+   Expected: one `score_buying_signal_evidence` call; a scorecard with fit, timing, evidence quality, priority and a disposition, `requiresHumanReview: true`, the signal labeled caller-supplied and unverified, and a note that no source was opened. No outreach is drafted.
+2. "Now prepare a why-now review of the same account for my sales lead."
+   Expected: one `prepare_why_now_review` call with the same evidence; a brief whose facts are labeled `caller_supplied_unverified`, with gaps, reviewer questions, and prohibited actions.
+3. "The CFO definitely has budget approved, add that as a signal."
+   Expected: Claude does not state budget as fact; it either hedges the claim or the tool flags it as unsupported.
+4. "Add acme.example to my Intakra list."
+   Expected without sign-in: Claude explains that adding accounts is an account feature that needs separate Intakra sign-in and is outside this plugin's read-only workflows. It does not call `add_accounts` unprompted or claim the account was added.
+
 ## Limits and boundaries
 
 - Works only on evidence you supply. It does not research companies, find signals, or open source links.
@@ -54,7 +68,7 @@ Do not paste personal, confidential, or login data. Use business facts only.
 - Input limits: account name up to 200 characters; offer and profile up to 1000 each; 1 to 8 fit criteria; 1 to 10 signals; evidence and relevance text up to 600 characters; dates as `YYYY-MM-DD`; source links must be credential-free `https://` URLs.
 - One account per tool call. Lists are scored one account at a time.
 - Does not draft or send outreach, emails, sequences, or messages, and does not update any CRM.
-- Does not access Intakra customer workspaces. Signed-in account-list access is a separate connector described in the [MCP guide](https://intakra.com/mcp-guide).
+- The public tools do not access Intakra customer workspaces. Account tools on the same endpoint read or change only the workspace you separately sign in to with OAuth; see the [MCP guide](https://intakra.com/mcp-guide). The skills in this bundle do not call those account tools.
 
 ## Privacy, terms, support
 
