@@ -1,6 +1,6 @@
 ---
 name: ai-discovery-audit
-description: Use when a user wants to know how ready their website or business is to be understood, mentioned, or cited by AI assistants such as ChatGPT, Claude, Gemini, Perplexity, Grok, or Copilot. Triggers include "AI visibility audit", "AI discovery readiness", "is my site ready for AI search", "why doesn't ChatGPT recommend my business", "GEO audit", "check my site for AI", "score my site for AI assistants", or a user pasting page details and asking how AI-ready they are. Collects evidence for ten discovery signals from pages the user names or pastes, then scores that evidence with the MentionedOn analyze_discovery_readiness tool.
+description: Use when a user wants to know how ready their website or business is to be understood, mentioned, or cited by AI assistants such as ChatGPT, Claude, Gemini, Perplexity, Grok, or Copilot. Triggers include "AI visibility audit", "AI discovery readiness", "is my site ready for AI search", "why doesn't ChatGPT recommend my business", "GEO audit", "check my site for AI", "score my site for AI assistants", or a user pasting page details and asking how AI-ready they are. Collects evidence for ten discovery signals from pages the user names or pastes, then scores that evidence with the MentionedOn analyze_discovery_readiness tool. For a MentionedOn customer who wants their site inspected and fixes generated, use website-fixes instead.
 ---
 
 # AI discovery readiness audit

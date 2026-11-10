@@ -1,6 +1,6 @@
 ---
 name: ai-mention-report
-description: Use when a user has captured AI assistant answers (from ChatGPT, Claude, Gemini, Perplexity, Grok, Copilot, Google AI Overviews, or an API) and wants them summarized into mention rate, citation rate, per-assistant breakdown, sentiment, or a month-over-month comparison. Triggers include "summarize my AI scan results", "what's our mention rate", "how often does ChatGPT cite us", "compare this month's AI answers to last month", "turn this capture log into a report", or a pasted spreadsheet of prompts and answers. Calculates the numbers with the MentionedOn summarize_scan_evidence tool and reports them with dates and limits.
+description: Use when a user has captured AI assistant answers (from ChatGPT, Claude, Gemini, Perplexity, Grok, Copilot, Google AI Overviews, or an API) and wants them summarized into mention rate, citation rate, per-assistant breakdown, sentiment, or a month-over-month comparison. Triggers include "summarize my AI scan results", "what's our mention rate", "how often does ChatGPT cite us", "compare this month's AI answers to last month", "turn this capture log into a report", or a pasted spreadsheet of prompts and answers. Calculates the numbers with the MentionedOn summarize_scan_evidence tool and reports them with dates and limits. For saved checks in a connected MentionedOn account, use visibility-report instead.
 ---
 
 # AI mention and citation report

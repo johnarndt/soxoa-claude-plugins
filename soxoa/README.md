@@ -2,7 +2,7 @@
 
 # Soxoa Automation Planning
 
-Soxoa is an AI automation studio for small and mid-size businesses: you talk through how your team works and get a plan for what to build. This plugin brings that planning into Claude. It connects Claude to Soxoa's three public, read-only planning tools and adds five skills that interview you about your recurring work, rank a backlog of workflows into automate, assist, or discovery, estimate illustrative hours and capacity value, write a business case memo with explicit assumptions, and scope a small, reversible first pilot. Every number comes from facts you supply. Nothing is guessed, and every result is an illustrative planning estimate, not guaranteed savings or professional advice.
+Soxoa is an AI automation studio for small and mid-size businesses: you talk through how your team works and get a plan for what to build. This plugin brings that planning into Claude. It connects Claude to Soxoa's three public, read-only planning tools and adds six skills that interview you about your recurring work, rank a backlog of workflows into automate, assist, or discovery, estimate illustrative hours and capacity value, write a business case memo with explicit assumptions, and scope and draft a small, reversible first pilot. Every number comes from facts you supply. Nothing is guessed, and every result is an illustrative planning estimate, not guaranteed savings or professional advice.
 
 ## What it connects to
 
@@ -34,6 +34,7 @@ All three tools are deterministic and idempotent: the same inputs always return 
 | `workflow-backlog-triage` | have a list of manual processes and ask which to automate first |
 | `automation-roi-estimate` | ask what automating one task is worth, how many hours it frees up, or the payback on a quote |
 | `automation-business-case` | need a one-page memo for an owner, manager, or partner, optionally with your own best and worst case values |
+| `draft-workflow-pilot` | want a concrete pilot plan for one workflow drafted with `build_workflow_pilot`, after confirming its eleven facts with you |
 | `pilot-scoping-checklist` | have picked a first workflow and want a safe, reversible pilot plan (optionally drafted with `build_workflow_pilot`) |
 
 ## Setup
@@ -71,6 +72,10 @@ After connecting, Claude should list the three tools above.
 - Sensitivity scenarios are run only with alternate values you supply.
 - Regulated, safety-critical, financial, medical, or legal judgment is never planned for full automation.
 - Do not enter credentials or sensitive business data. The tools need only names, numbers, and ratings.
+
+## Soxoa builds MCP servers too
+
+These tools are a small example of Soxoa's own work. If you want your own SaaS product usable by AI agents (a production MCP server with OAuth sign-in and directory listings), see https://soxoa.com/agent-ready. The skills never pitch this; Claude mentions it only if you ask.
 
 ## Privacy, terms, support
 

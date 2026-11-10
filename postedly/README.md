@@ -2,15 +2,17 @@
 
 # Postedly for Claude
 
-Postedly sends real faxes, letters, certified mail, postcards and handwritten cards in the US. This plugin connects Claude to Postedly's MCP server and adds skills that walk Claude through each kind of send: check what is available, transfer the exact finished PDF (or pick a card, handwriting style and message), get a quote with the final proof, and hand you a private review link. You check the proof, recipient and total on Postedly's page, approve, and pay on Postedly's hosted Stripe Checkout. Each send is priced individually with no subscription; see https://postedly.com for current prices. Nothing is sent until you approve and pay, and Claude can then check the order status for you.
+Postedly sends real faxes, letters, certified mail, postcards, handwritten cards and paper checks in the US. This plugin connects Claude to Postedly's MCP server and adds skills that walk Claude through each kind of send: check what is available, transfer the exact finished PDF (or pick a card, handwriting style and message), get a quote with the final proof, and hand you a private review link. You check the proof, recipient and total on Postedly's page, approve, and pay on Postedly's hosted Stripe Checkout. Claude can also keep a private address book and saved drafts for you, export a delivery report for an order, and draft a paper check from your own checking account for you to sign. Nothing is sent until you approve and pay, and Claude can then check the order status for you.
+
+**Prices** (USD, before applicable tax, no subscription; the live catalog and your quote are authoritative): fax $2.99 (up to 5 pages plus a cover, charged only after every page transmits), letter $4.99, certified mail $14.99, postcard $4.99, handwritten card $9.99, paper check $6.99 service fee per check (Postedly never charges the check amount).
 
 ## What it connects to
 
 | Item | Detail |
 | --- | --- |
 | MCP server | `https://postedly.com/mcp/send` (remote, Streamable HTTP) |
-| Auth | OAuth 2.0 with dynamic client registration. Scopes: `orders:read`, `quotes:write`, `checkout:write`. You sign in and consent on Postedly's own page; the plugin contains no keys or credentials |
-| Data sent to postedly.com | The bytes of each document you choose to send (PDF), recipient details (name, postal address or fax number), sender details (name, return or billing address; your account's verified email is filled in by Postedly), handwritten card choices and message text, and the IDs needed to read quotes and orders |
+| Auth | OAuth 2.0 with dynamic client registration. Scopes: `orders:read`, `quotes:write`, `checkout:write`, `contacts:read`, `contacts:write`, `drafts:read`, `drafts:write`. The server answers 401 until you sign in, so Claude Code lists it as needing authentication until you run `/mcp` and sign in. This plugin points at `/mcp/send`, the address on Postedly's connect page and server card. Every Postedly tool needs sign-in, so there is no anonymous address to choose instead. You sign in and consent on Postedly's own page; the plugin contains no keys or credentials |
+| Data sent to postedly.com | The bytes of each document you choose to send (PDF), recipient details (name, postal address or fax number), sender details (name, return or billing address; your account's verified email is filled in by Postedly), handwritten card choices and message text, contacts and drafts you ask Claude to save, and for a check the payee name and address, amount, memo and a masked bank reference. Never bank account or routing numbers |
 | Payment | Only on Postedly's hosted Stripe Checkout page, after you approve on Postedly's review page. Card details and email verification codes never go through Claude or this chat |
 | Claude Code uploads | When Claude can read the file on your machine, the skills ask you to confirm the file, then send only that PDF to a single-use upload address on `https://postedly.com/api/document-handoffs/` (for example with `curl`). Claude refuses any upload address outside postedly.com |
 | Anything else | Nothing. The plugin itself contacts no other service. Postedly passes what is needed to its fax, print-and-mail and handwriting providers to fulfill an order you approve, as described in its privacy policy |
@@ -27,7 +29,16 @@ Postedly sends real faxes, letters, certified mail, postcards and handwritten ca
 | `postedly_quote` | Creates a time-limited quote for one document or card and one recipient, with the final proof and total | Write (no charge, nothing sent) |
 | `postedly_checkout` | Returns the private browser review link where you approve and pay | Read-only (no order, no payment) |
 | `postedly_order_status` | Payment and sending status, timeline and evidence for one order | Read-only |
-| `postedly_orders` | Up to 50 of your orders, newest first | Read-only |
+| `postedly_orders` | Your orders, newest first, filterable by recipient or order ID, service, status and date; up to 50 per page | Read-only |
+| `postedly_delivery_report` | Plain-text report of one order's payment, fulfillment, timeline and provider evidence | Read-only |
+| `postedly_contacts` | Your saved recipients and return addresses | Read-only |
+| `postedly_save_contact` | Saves or updates one contact, only when you ask (kept one year after the last save) | Write (no charge, nothing sent) |
+| `postedly_delete_contact` | Deletes one saved contact after you confirm | Write |
+| `postedly_drafts` | Your saved correspondence drafts | Read-only |
+| `postedly_save_draft` | Saves preparation details for one send, only when you ask (kept 30 days) | Write (no quote, nothing sent) |
+| `postedly_delete_draft` | Deletes one saved draft after you confirm | Write |
+| `postedly_bank_accounts` | Your connected checking accounts for paper checks, masked, with readiness and setup link | Read-only |
+| `postedly_check_draft` | Drafts one paper check from your own ready account and returns a fee quote and your private review link | Write (no signature, payment or send) |
 
 ## Skills
 
@@ -38,6 +49,10 @@ Postedly sends real faxes, letters, certified mail, postcards and handwritten ca
 | `send-a-postcard` | "Mail a postcard to my parents", "print and mail this postcard design" |
 | `send-a-handwritten-card` | "Send a handwritten thank-you card", "mail a birthday card in real pen" |
 | `track-postedly-orders` | "Did my fax go through?", "was my letter mailed?", "the checkout timed out, did it work?" |
+| `delivery-report` | "Give me proof my certified letter was mailed", "export the fax confirmation" |
+| `mail-a-check` | "Mail a $250 check to my landlord", "which accounts can I write checks from?" |
+| `saved-contacts` | "Save Dr. Lee's fax number", "use my saved return address", "delete that contact" |
+| `correspondence-drafts` | "Save this letter as a draft", "pick up my draft to the landlord" |
 
 ## Setup
 
@@ -89,8 +104,9 @@ For the same check with a synthetic fax, set `service: fax` on upload and use th
 - One document or card, one recipient, one approval per order. No bulk or mail-merge sends.
 - Letters and certified mail: portrait US Letter PDF, up to six physical sheets including the added address page. Fax: up to five pages plus a cover. Postcards: a two-page landscape PDF matching the live template. All PDFs at most 10 MiB, unencrypted.
 - Certified mail is USPS Certified Mail with tracking. A return receipt or signature is not included unless the quote says so. The plugin does not give legal advice about whether a mailing meets a notice requirement.
+- Saving a contact or draft never authorizes a send. Claude saves them only when you ask.
 - Claude cannot approve, pay or send for you. Quotes and review links never charge or send anything. Each quote is for an exact total and a private final proof that you check on Postedly's review page; approval happens only there, and payment only on hosted Stripe Checkout.
-- No tool writes, prints or mails checks, or pays anyone on your behalf.
+- Paper checks: Claude can draft one check from a checking account you connected and verified yourself on postedly.com. Only you review the proof, sign with your passkey and pay the service fee, in your browser. Claude never sees or asks for account or routing numbers, and a mailed check is not a cleared payment.
 - Delivery dates are estimates. A delivered fax means the receiving machine accepted it, not that someone read it.
 - "Make & send an object" (3D printed objects) is a manually quoted beta and is not ordered through these tools; Claude will point you to the request form on postedly.com, and you send that request from your own email app.
 - Claude does not write or edit documents on Postedly's side. Any letter or postcard Claude writes for you is finished and shown to you before it is uploaded.
@@ -101,6 +117,7 @@ For the same check with a synthetic fax, set `service: fax` on upload and use th
 - Terms of service: https://postedly.com/terms
 - Delivery and refunds: https://postedly.com/refunds
 - Support: https://postedly.com/support or john@soxoa.com
+- Connect in a minute: https://postedly.com/agents/connect
 - Developer guide: https://postedly.com/developers
 
 ## License

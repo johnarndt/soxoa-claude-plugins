@@ -1,6 +1,6 @@
 ---
 name: account-list-triage
-description: Use when a user has a short list of business accounts (roughly 2 to 15) with evidence for each and wants them scored and ranked with Intakra. Triggers include "rank these accounts", "which of these companies should I look at first", "triage my account list", "score this list of prospects", "who on this list has a real reason to buy now", or a pasted table of companies with notes or signals.
+description: Use when a user has a short list of business accounts (roughly 2 to 15) with evidence for each and wants them scored and ranked with Intakra. Triggers include "rank these accounts", "which of these companies should I look at first", "triage my account list", "score this list of prospects", "who on this list has a real reason to buy now", or a pasted table of companies with notes or signals. For companies already tracked in the user's Intakra workspace ("my list"), use prioritize-tracked-accounts instead.
 ---
 
 # Intakra account list triage

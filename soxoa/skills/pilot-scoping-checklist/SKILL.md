@@ -11,6 +11,7 @@ The Soxoa tools are optional here. Use them only to confirm the workflow's postu
 
 ## When not to use this skill
 
+- The user only wants the tool-drafted plan (steps, review gates, acceptance checks): use `draft-workflow-pilot`.
 - The user has not chosen a workflow and has several candidates: run `workflow-backlog-triage` first.
 - The user wants a build specification, code, or a tool recommendation by brand. This skill stays vendor-neutral and stops at the plan.
 - The workflow's triage result is `discovery`. A build pilot is premature. Offer a discovery pilot instead (map the process, collect examples, measure exceptions), which this skill can also plan; say clearly that it is discovery, not automation.

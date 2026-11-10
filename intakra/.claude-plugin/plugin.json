@@ -1,14 +1,14 @@
 {
   "name": "intakra",
   "displayName": "Intakra",
-  "version": "1.0.1",
-  "description": "Score account fit and dated buying-signal evidence you supply, then prepare a review-only why-now brief that keeps every fact labeled unverified.",
+  "version": "1.1.0",
+  "description": "Ask which accounts on your Intakra list are worth a call today, what changed this week and who owns each lead, manage your tracked list and offering, or score buying-signal evidence you supply. Leads are dated reasons to look, never confirmed intent; no tool sends outreach.",
   "author": {
     "name": "Soxoa LLC",
     "email": "hello@intakra.com",
     "url": "https://intakra.com"
   },
-  "homepage": "https://intakra.com/mcp-guide",
+  "homepage": "https://intakra.com/agents",
   "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
   "license": "MIT",
   "keywords": [
@@ -21,7 +21,7 @@
     "evidence-review"
   ],
   "privacyPolicyUrl": "https://intakra.com/privacy",
-  "documentationUrl": "https://intakra.com/mcp-guide",
+  "documentationUrl": "https://intakra.com/agents",
   "supportUrl": "https://intakra.com/support",
   "termsOfServiceUrl": "https://intakra.com/terms"
 }
