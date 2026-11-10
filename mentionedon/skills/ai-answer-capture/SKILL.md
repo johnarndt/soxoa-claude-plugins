@@ -1,6 +1,6 @@
 ---
 name: ai-answer-capture
-description: Use when a user wants to check, record, or track what AI assistants say about their business, by hand and consistently. Triggers include "does ChatGPT mention my business", "how do I check if AI recommends us", "set up AI visibility tracking", "what prompts should I test", "help me log AI answers", "make a capture sheet", "monitor Perplexity/Gemini/Claude/Grok/Copilot answers monthly", or pasted screenshots or answers from an AI assistant that need recording. Builds a fixed prompt set, a capture log that matches MentionedOn's observations format, and a re-check cadence. Records only answers the user actually captured.
+description: Use when a user wants to check, record, or track what AI assistants say about their business, by hand and consistently. Triggers include "does ChatGPT mention my business", "how do I check if AI recommends us", "set up AI visibility tracking", "what prompts should I test", "help me log AI answers", "make a capture sheet", "monitor Perplexity/Gemini/Claude/Grok/Copilot answers monthly", or pasted screenshots or answers from an AI assistant that need recording. Builds a fixed prompt set, a capture log that matches MentionedOn's observations format, and a re-check cadence. Records only answers the user actually captured. If the business is already monitored in a MentionedOn account, use visibility-report to read its saved checks instead.
 ---
 
 # AI answer capture protocol

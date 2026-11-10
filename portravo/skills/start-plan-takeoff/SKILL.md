@@ -100,7 +100,7 @@ See `references/errors.md` for every error code and what to say. The common ones
 
 ## Reading the results
 
-- `preflight_takeoff`: available trades (automatic or team-assisted), `creditsRequired`, `existingCreditsAvailable` (null before account linking), `accountLinked`, upload limits, published prices, and a review link. Published prices are for purchases made in Portravo. They are not what this run charges, because a run uses existing credits only.
+- `preflight_takeoff`: available trades (automatic or team-assisted), `creditsRequired`, `existingCreditsAvailable` (null before account linking), `accountLinked`, upload limits, published prices, and a review link. One trade uses one takeoff credit and the whole job (`whole_job`) uses three. The published prices are what credits cost when bought in Portravo ($75 per trade, $149 for the whole job, or plan takeoffs); `run_takeoff` itself only spends credits already in the balance and never buys any. Quote prices from the tool's output, not from memory.
 - `run_takeoff`: asynchronous progress. It is not a finished takeoff.
 - `get_takeoff_status`: the project, the latest run's progress, any completion limitations, and the review link. Quote completion limitations as given; do not reword them into certainty.
 - `get_takeoff`: the verified result: `project.status`, `lines`, `files`, `reviewRequired`, `reviewUrl`. Field details are in the `review-takeoff` skill.

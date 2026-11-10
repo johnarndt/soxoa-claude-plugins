@@ -1,6 +1,6 @@
 ---
 name: track-postedly-orders
-description: Use when the user asks about a Postedly order they already placed or a send they started, for example "did my fax go through", "was my letter mailed", "where is my certified mail", "check my Postedly orders", "what's the tracking number", "I paid but nothing happened", "the checkout timed out, did it work", or "cancel my order". Read-only status checks for fax, letter, certified mail, postcard and handwritten card orders.
+description: Use when the user asks about a Postedly order they already placed or a send they started, for example "did my fax go through", "was my letter mailed", "where is my certified mail", "check my Postedly orders", "what's the tracking number", "I paid but nothing happened", "the checkout timed out, did it work", or "cancel my order". Read-only status checks for fax, letter, certified mail, postcard, handwritten card and paper check orders. To export a delivery evidence report, use delivery-report.
 ---
 
 # Track Postedly orders
@@ -18,14 +18,14 @@ If the Postedly tools are not available, read `references/order-states.md` (Not 
 
 | Tool | Input | Returns |
 | --- | --- | --- |
-| `postedly_orders` | `{}` | `{orders: [...]}`: up to 50 orders for this account, newest first |
+| `postedly_orders` | `{}`, or filters: `query` (recipient name or order ID), `service`, `fulfillmentStatus`, `createdAfter` / `createdBefore` (ISO 8601 with offset), `offset`, `limit` (up to 50) | Matching orders for this account, newest first, and `nextOffset` for another page |
 | `postedly_order_status` | `{"orderId": "<id>"}` (required) | One order with its timeline and any provider evidence |
 
 Both are read-only. You may call them as often as needed.
 
 ## Workflow
 
-1. If the user gave an order ID, call `postedly_order_status` with it. Otherwise call `postedly_orders` and find the matching order by `service`, recipient snapshot and creation time. If several could match, list them briefly and ask which one.
+1. If the user gave an order ID, call `postedly_order_status` with it. Otherwise call `postedly_orders`, with `query`, `service` or a date range when the user gave them, and find the matching order by `service`, recipient snapshot and creation time. If several could match, list them briefly and ask which one.
 2. Read `paymentStatus` and `fulfillmentStatus` separately, then `timeline` and `evidence`. Use the tables in `references/order-states.md`.
 3. Answer with the template below. Quote dates and evidence exactly as returned.
 4. If `paymentStatus` is `checkout_pending` and the order has a `checkoutUrl`, the user has not finished paying. Tell them they can finish there. If `checkoutUrl` is null, say checkout has not been set up yet and suggest checking again shortly.

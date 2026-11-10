@@ -39,7 +39,7 @@ Portravo turns construction plan PDFs into AI takeoffs: quantities by trade, eac
 
 ## Setup
 
-You need a Portravo account (sign up at https://portravo.com). Takeoffs use estimate credits from your balance; the plugin never buys credits.
+You need a Portravo account (sign up at https://portravo.com). Each trade on a project uses one takeoff credit and the whole job uses three. Credits cost $75 per trade or $149 for the whole job pay as you go, or come with a monthly plan (see https://portravo.com/pricing). Takeoffs started from Claude use credits already in your balance; the plugin never buys credits or bills overage. Before you link an account, `preflight_takeoff` and `list_pricing_markets` already show trades, prices and markets.
 
 - **Claude directory:** install the bundle once it is published, or connect the published Portravo MCP connector now. Sign in to Portravo when Claude asks.
 - **Claude Code marketplace:** run `/plugin marketplace add johnarndt/soxoa-claude-plugins`, then `/plugin install portravo@soxoa-plugins`. Run `/mcp` and authenticate Portravo.

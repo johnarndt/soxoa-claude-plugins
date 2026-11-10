@@ -1,7 +1,7 @@
 {
   "name": "soxoa",
   "displayName": "Soxoa Automation Planning",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Estimate illustrative automation ROI, rank recurring workflows into automate, assist, or discovery, and draft a reviewable pilot plan using Soxoa's public, read-only planning tools.",
   "author": {
     "name": "Soxoa LLC",

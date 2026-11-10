@@ -1,0 +1,26 @@
+{
+  "name": "regsentry",
+  "displayName": "RegSentry",
+  "version": "1.1.0",
+  "description": "Check which trackers a website you own loads before and after cookie consent: static and browser-based inspections, evidence grading, before/after comparisons, plain-text reports and tracker playbooks. Technical evidence only, never legal advice.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@soxoa.com",
+    "url": "https://regsentry.com"
+  },
+  "homepage": "https://regsentry.com/agents",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "privacy",
+    "consent",
+    "cookie-banner",
+    "tracking",
+    "website-trackers",
+    "evidence"
+  ],
+  "privacyPolicyUrl": "https://regsentry.com/privacy",
+  "documentationUrl": "https://regsentry.com/agents",
+  "supportUrl": "https://regsentry.com/support",
+  "termsOfServiceUrl": "https://regsentry.com/terms"
+}
