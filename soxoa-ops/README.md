@@ -2,7 +2,7 @@
 
 # Soxoa Ops
 
-Fifteen skills for owners and operations leaders who run real work through Claude. They come from the routines Soxoa uses to run its own products: capture what customers say, see who signs up and where they get stuck, close every agent session with a clear owner to-do list, check marketing claims against evidence, and scope automation before anyone builds it.
+Seventeen skills for owners and operations leaders who run real work through Claude. They come from the routines Soxoa uses to run its own products: capture what customers say, see who signs up and where they get stuck, close every agent session with a clear owner to-do list, check marketing claims against evidence, and scope automation before anyone builds it.
 
 This plugin is instructions only. It has no MCP server, hooks, scripts or network calls of its own, and it sends data nowhere. Each skill works with the files, connectors and tools your Claude session already has, and says what it needs when something is missing.
 
@@ -16,6 +16,8 @@ This plugin is instructions only. It has no MCP server, hooks, scripts or networ
 | `signup-pulse` | An email the moment someone signs up, a morning list of who got stuck, and a walk through the real funnel. |
 | `chief-of-staff-brief` | A daily brief built from commits and the requests typed into AI sessions: what moved, what's stuck, what was promised. |
 | `owner-actions` | Ends every agent session with a dated, copy-paste list of what only the owner can do, with proof for what's done. |
+| `quiet-day-check` | When orders stop, check whether it is unusual, what changed, and whether the live path still reaches the payment step. |
+| `email-sender-switch` | Move transactional email to a new provider or from-address behind one transport, with a fallback only when the provider definitely refused. |
 
 ### Marketing and sales
 

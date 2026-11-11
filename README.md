@@ -1,6 +1,6 @@
 # Soxoa product plugins for Claude
 
-Eight Claude plugins, one folder each. Seven connect Claude to one of Soxoa LLC's live remote MCP servers and add skills that teach Claude how to use it well. The eighth, Soxoa Ops, is skills only. Every tool name in every skill is checked against the live server by `scripts/check-plugins.mjs`.
+Nine Claude plugins, one folder each. Seven connect Claude to one of Soxoa LLC's live remote MCP servers and add skills that teach Claude how to use it well. The other two, Soxoa Ops and Soxoa Growth, are skills only. Every tool name in every skill is checked against the live server by `scripts/check-plugins.mjs`.
 
 | Plugin | Product | MCP server | Sign-in | Skills |
 | --- | --- | --- | --- | --- |
@@ -11,7 +11,8 @@ Eight Claude plugins, one folder each. Seven connect Claude to one of Soxoa LLC'
 | [`portravo`](portravo/) | Portravo: construction takeoffs and estimates | `https://portravo.com/mcp` | OAuth for project tools; preflight and markets work before sign-in | 5 |
 | [`ocolta`](ocolta/) | Ocolta: document-review summaries | `https://app.ocolta.com/mcp` | OAuth, bound to one existing purchase | 4 |
 | [`regsentry`](regsentry/) | RegSentry: website tracker and consent evidence | `https://regsentry.com/mcp` | None (6 public tools; account tools need your own API key, added separately) | 4 |
-| [`soxoa-ops`](soxoa-ops/) | Soxoa Ops: fifteen operating skills | None (skills only) | None | 15 |
+| [`soxoa-ops`](soxoa-ops/) | Soxoa Ops: seventeen operating skills | None (skills only) | None | 17 |
+| [`soxoa-growth`](soxoa-growth/) | Soxoa Growth: SEO, GEO and AEO checks and competitor teardowns | None (skills only) | None | 22 |
 
 ## Which address each plugin uses
 
