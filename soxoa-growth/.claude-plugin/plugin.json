@@ -1,0 +1,33 @@
+{
+  "name": "soxoa-growth",
+  "displayName": "Soxoa Growth",
+  "version": "1.1.0",
+  "description": "Twenty-two skills for getting found in search and in AI answers: SEO, GEO and AEO checks, buyer question maps, answer-first pages, schema and llms.txt, AI crawler access, citation gaps, before and after tests, and public-evidence teardowns of another company's go-to-market, marketing stack and SEO.",
+  "author": {
+    "name": "Soxoa LLC",
+    "email": "hello@soxoa.com",
+    "url": "https://soxoa.com"
+  },
+  "homepage": "https://github.com/johnarndt/soxoa-claude-plugins/tree/main/soxoa-growth",
+  "repository": "https://github.com/johnarndt/soxoa-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "geo",
+    "aeo",
+    "ai-visibility",
+    "ai-search",
+    "competitive-research",
+    "go-to-market",
+    "marketing",
+    "structured-data",
+    "llms-txt",
+    "local-seo",
+    "content",
+    "small-business"
+  ],
+  "privacyPolicyUrl": "https://soxoa.com/privacy",
+  "documentationUrl": "https://github.com/johnarndt/soxoa-claude-plugins/tree/main/soxoa-growth",
+  "supportUrl": "https://soxoa.com/support",
+  "termsOfServiceUrl": "https://soxoa.com/terms"
+}

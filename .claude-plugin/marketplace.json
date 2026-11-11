@@ -6,7 +6,7 @@
     "url": "https://soxoa.com"
   },
   "metadata": {
-    "description": "Claude plugins for Soxoa LLC's seven products (MentionedOn, Intakra, Soxoa, Postedly, Portravo, Ocolta and RegSentry), each pairing the product's live remote MCP server with skills, plus Soxoa Ops: skills-only operating routines.",
+    "description": "Claude plugins for Soxoa LLC's seven products (MentionedOn, Intakra, Soxoa, Postedly, Portravo, Ocolta and RegSentry), each pairing the product's live remote MCP server with skills, plus two skills-only plugins: Soxoa Ops (operating routines) and Soxoa Growth (SEO, GEO and AEO checks and competitor teardowns).",
     "version": "1.1.0"
   },
   "plugins": [
@@ -55,8 +55,14 @@
     {
       "name": "soxoa-ops",
       "source": "./soxoa-ops",
-      "description": "Fifteen operating skills: feedback inbox, signup alerts, daily brief, owner actions, claim audit, ad path check, prospect research, marketing kit, voice guide, evidence articles, AI output review and automation scoping.",
+      "description": "Seventeen operating skills: feedback inbox, signup alerts, daily brief, owner actions, claim audit, ad path check, prospect research, marketing kit, voice guide, evidence articles, AI output review, automation scoping, a quiet-day order check and a safe email sender switch.",
       "category": "productivity"
+    },
+    {
+      "name": "soxoa-growth",
+      "source": "./soxoa-growth",
+      "description": "Twenty-two skills for getting found in search and AI answers: SEO, GEO and AEO checks, answer-first pages, llms.txt, citation gaps, before and after tests, and public-evidence teardowns of a competitor's GTM, marketing and SEO.",
+      "category": "marketing"
     }
   ]
 }
